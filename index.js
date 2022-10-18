@@ -8,7 +8,7 @@ try {
      const pr = payload.pull_request;
 
     var slack_message = new SlackMessage(core.getInput("username"), core.getInput("slack_webhook"), `#${core.getInput("channel")}`)
-    if(message.length > 0)
+    if(core.getInput("message").length > 0)
         slack_message.custom_message(core.getInput("message_title"), core.getInput("message"))
     else if (event_name.indexOf("pull_request") >= 0 && pr) {
         pr_title = `<${pr.html_url}|*#${pr.number}* ${pr.title}>`
