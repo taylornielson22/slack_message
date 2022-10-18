@@ -10,6 +10,11 @@ inputs:
   message:
     description: Message to send in channel
     required: false
+    default: ""
+  message_title:
+    description: Title of custom message to send in channel
+    required: false
+    default: ""
   username:
     description: Name of Bot sending message
     required: false
