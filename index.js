@@ -13,8 +13,6 @@ try {
         pr_title = `<${pr.html_url}|*#${pr.number}* ${pr.title}>`
         if(payload.review)
             slack_message.pr_message(payload.review.state, pr_title, `<${payload.review.user.url}|${payload.review.user.login}>`, payload.review.body)
-        else if(payload.comment)
-            slack_message.pr_message("comment", pr_title, `<${payload.comment.user.url}|${payload.comment.user.login}>`, payload.comment.body)
         else if(pr.state=="open")
             slack_message.pr_message("", pr_title, `<${pr.user.url}|${pr.user.login}>`, "")
     }
