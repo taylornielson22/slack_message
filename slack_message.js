@@ -44,14 +44,13 @@ class SlackMessage
         
 	}
 
-    pr_review_message(state, pr_title, review_user) 
+    pr_review_message(state, pr_title, review_user, body) 
     {
         if (state == "approved") 
             this.payload.json.text = `PR ${pr_title} was approved by ${review_user}! :heavy_check_mark:`
         else if (state == "changes_requested"){
-            attachment[0].pretext = `PR ${pr_title} was rejected!`
-            attachment[0].fallback = `PR ${pr_title} was rejected!`
-            attachment[0].fields[0].value =  `Changes were requested by ${review_user} on PR ${pr_title}`
+            attachment[0].pretext = `${review_user} request changes on PR ${pr_title}`
+            attachment[0].fields[0].value =  body
             this.payload.json["attachments"]= attachment
         }
 	}
