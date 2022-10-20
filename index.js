@@ -8,13 +8,15 @@ try {
     console.log(`Event Trigger : ${github.context.event_name}`)
     var slack_message = new SlackMessage(core.getInput("username"), core.getInput("slack_webhook"), `#${core.getInput("channel")}`)
     if(core.getInput("message").length > 0)
-        slack_message.custom_message(core.getInput("message_title"), core.getInput("message"))
+        slack_message.create_message(core.getInput("message_title"), core.getInput("message"))
     else if (pr) {
         pr_title = `<${pr.html_url}|*#${pr.number}* ${pr.title}>`
         if(payload.review)
-            slack_message.pr_review_message(payload.review.state, pr_title, `<${payload.review.user.url}|${payload.review.user.login}>`, payload.review.body)
+            slack_message.pr_message(payload.review.state, pr_title, `<${payload.review.user.url}|${payload.review.user.login}>`, payload.review.body)
+        else if(payload.comment)
+            slack_message.pr_message("comment", pr_title, `<${payload.comment.user.url}|${payload.comment.user.login}>`, payload.comment.body)
         else if(pr.state=="open")
-            slack_message.pr_ready_message(pr_title, `<${pr.user.url}|${pr.user.login}>`)
+            slack_message.pr_message("", pr_title, `<${pr.user.url}|${pr.user.login}>`, "")
     }
      
     console.log(`Sending payload to chanel #${core.getInput("channel")}`)
