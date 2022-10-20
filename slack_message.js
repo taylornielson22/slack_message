@@ -2,28 +2,22 @@
 const core = require("@actions/core");
 
 const json_payload = {
-        uri: "",
-        headers: {'content-type' : 'application/json'},
-        method: 'POST',
-        json: {
-            "channel": "",
-            "username": "",
-            "text": "",
-        }
-}
-const attachment = [
-           {
-              "fallback":"",
-              "pretext":"",
-              "color":"#D00000",
-              "fields":[
-                 {
-                    "value":"",
-                    "short":false
-                 }
-              ]
-           }
-        ]
+    uri: "",
+    headers: {'content-type' : 'application/json'},
+    method: 'POST',
+    json: {
+        "channel": "",
+        "username": "",
+        "text": "",
+    }}
+const attachment = [{
+    fallback:"",
+    pretext:"",
+    color:"#65c8f0",
+    fields:[{
+        value:"",
+        short:false 
+    }]}]
 
 class SlackMessage
 {
@@ -49,7 +43,7 @@ class SlackMessage
     {
 	switch(state){
 	    case "approved":
-                this.create_message("",`PR ${pr_title} was approved by ${user}! :heavy_check_mark:`)
+                this.create_message("",`PR ${pr_title} was approved by ${user}! :cool-dog:`)
 		break;
             case "changes_requested":
             	this.create_message(`${user} requested changes on PR ${pr_title}`, body)
@@ -59,7 +53,7 @@ class SlackMessage
 	        break;
 	    default:
 	        this.create_message(":rocket: New PR ready for review! :rocket:", `${pr_title} submitted by ${user} is ready for review`)
-			
+		attachment[0].color = "#D00000"	
 	}
    }
 }
