@@ -35,6 +35,15 @@ class SlackMessage
         this.payload.json.channel = channel
     }
 
+    create_message(title, message){
+        if(title.length == 0)
+            this.payload.json.text = message
+        else{
+            attachment[0].pretext = title
+            attachment[0].fields[0].value = message
+            this.payload.json["attachments"]= attachment
+        }
+    }
 
     pr_message(state, pr_title, user, body) 
     {
@@ -53,18 +62,7 @@ class SlackMessage
 			
 	}
    }
-    create_message(title, message){
-        if(title.length == 0)
-            this.payload.json.text = message
-        else{
-            attachment[0].pretext = title
-            attachment[0].fields[0].value = message
-            this.payload.json["attachments"]= attachment
-        }
-    }
 }
-	
-
 
 module.exports = {
     SlackMessage
