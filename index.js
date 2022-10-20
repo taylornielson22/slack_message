@@ -19,12 +19,12 @@ try {
     }
      
     console.log(`Sending payload to chanel #${core.getInput("channel")}`)
-    console.log(`Payload:\n${slack_message.payload`)
+    console.log(`Payload:\n${slack_message.payload}`)
     request(slack_message.payload, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           console.log(body) 
         }
-      });
+     });
 } catch (error) {
     console.log(error)
     //core.setFailed(error.message);
