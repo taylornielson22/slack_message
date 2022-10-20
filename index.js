@@ -19,7 +19,7 @@ try {
         else if(github.event_name == "pull_request_review_comment")
                 slack_message.pr_review_commemt_message(pr_title, `<${payload.comment.user.url}|${payload.comment.user.login}>`, payload.comment.body)
     }
-    request(slack_message.payload(), function (error, response, body) {
+    request(slack_message.payload, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           console.log(body) 
         }
