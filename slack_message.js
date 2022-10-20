@@ -49,16 +49,16 @@ class SlackMessage
     {
 	switch(state){
 	    case "approved":
-                create_message("",`PR ${pr_title} was approved by ${user}! :heavy_check_mark:`)
+                this.create_message("",`PR ${pr_title} was approved by ${user}! :heavy_check_mark:`)
 		break;
             case "changes_requested":
-            	create_message(`${user} requested changes on PR ${pr_title}`, body)
+            	this.create_message(`${user} requested changes on PR ${pr_title}`, body)
 		break;
 	    case "comment":
-	        create_message(`${user} left a comment on PR ${pr_title}`, body)
+	        this.create_message(`${user} left a comment on PR ${pr_title}`, body)
 	        break;
 	    default:
-	        create_message(":rocket: New PR ready for review! :rocket:", `${pr_title} submitted by ${user} is ready for review`)
+	        this.create_message(":rocket: New PR ready for review! :rocket:", `${pr_title} submitted by ${user} is ready for review`)
 			
 	}
    }
