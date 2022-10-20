@@ -54,7 +54,7 @@ class SlackMessage
             case "changes_requested":
             	this.create_message(`${user} requested changes on PR ${pr_title}`, body)
 		break;
-	    case "comment":
+	    case "commented":
 	        this.create_message(`${user} left a comment on PR ${pr_title}`, body)
 	        break;
 	    default:
