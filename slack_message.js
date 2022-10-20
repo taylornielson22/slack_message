@@ -51,7 +51,7 @@ class SlackMessage
         else if (state == "changes_requested"){
             attachment[0].pretext = `PR ${pr_title} was rejected!`
             attachment[0].fallback = `PR ${pr_title} was rejected!`
-            attachment[0].fields[0].value =  `Changes were requested by ${user} on PR ${pr_title}`
+            attachment[0].fields[0].value =  `Changes were requested by ${review_user} on PR ${pr_title}`
             this.payload.json["attachments"]= attachment
         }
 	}
